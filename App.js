@@ -1,26 +1,29 @@
 import React from "react";
-import { StatusBar, SafeAreaView, ScrollView, View } from "react-native";
+import { StatusBar, SafeAreaView} from "react-native";
 import Cesta from "./src/telas/Cesta";
-import { 
-  useFonts, 
-  Montserrat_400Regular, 
-  Montserrat_700Bold 
+import {
+  useFonts,
+  Montserrat_400Regular,
+  Montserrat_700Bold,
 } from "@expo-google-fonts/montserrat";
+import AppLoading from "expo-app-loading";
+
+import mock from "./src/mocks/cesta";
 
 export default function App() {
   const [fonteCarregada] = useFonts({
-    "MontserratRegular" : Montserrat_400Regular,
-    "MontserratBold": Montserrat_700Bold,
+    MontserratRegular: Montserrat_400Regular,
+    MontserratBold: Montserrat_700Bold,
   });
 
   if (!fonteCarregada) {
-    return <View />
-  } 
-  
+    return <AppLoading />;
+  }
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1}}>
         <StatusBar />
-        <Cesta />
+        <Cesta {...mock} />
     </SafeAreaView>
   );
 }
